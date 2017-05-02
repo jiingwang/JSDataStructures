@@ -67,3 +67,45 @@ cities.display();
 
 
 // 双向链表
+
+function Node(element) {
+	this.element = element;
+	this.next = null;
+	this.previous = null;
+}
+
+function insert(newElement, item) {
+	var currentNode = this.find(item);
+	var newNode = new Node(newElement);
+	newNode.previous = currentNode;
+	newNode.next = currentNode.next;
+	currentNode.next.previous = newNode;
+	currentNode.next = newNode;
+}
+
+function remove(element) {
+	var currentNode = this.find(element);
+	if (currentNode.next != null) {
+		currentNode.previous.next = currentNode.next;
+		currentNode.next.previous = currentNode.previous;
+		currentNode.next = null;
+		currentNode.previous = null;
+	}
+}
+
+findLast() {
+	var currentNode = this.head;
+	while(currentNode.next != null)  {
+		currentNode = currentNode.next;
+	}
+	return currentNode;
+}
+
+function dispReverse() {
+	var lastNode = this.findLast();
+	while(lastNode.previous != null) {
+		console.log(lastNode.element);
+		lastNode = lastNode.previous;
+	}
+	console.log(lastNode.element);
+}
