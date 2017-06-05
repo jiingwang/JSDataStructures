@@ -58,7 +58,7 @@ function betterPut(data) {
 	var pos = this.betterHash(data);
 	this.table[pos] = data;
 }
-
+console.log('----------------------------------------');
 var names1 = ['jones', 'jane', 'michael', 'marry', 'xiaoli'];
 var hTable1 = new HashTable();
 for(var j=0; j<names1.length; j++) {
