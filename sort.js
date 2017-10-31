@@ -1,4 +1,9 @@
-// 冒泡排序
+/**
+ * 冒泡排序
+ * 时间复杂度 O(n^2)
+ * @param  {[type]} arr [description]
+ * @return {[type]}     [description]
+ */
 function bubbleSort(arr) {
     let len = arr.length;
     let temp;
@@ -15,7 +20,12 @@ function bubbleSort(arr) {
 
 
 
-// 选择排序
+/**
+ * 选择排序
+ * 时间复杂度 O(n^2)
+ * @param  {[type]} arr 
+ * @return {[type]}     [description]
+ */
 function selectSort(arr) {
     let len = arr.length;
     for(var i=0; i<len-1; i++) {
@@ -34,6 +44,12 @@ function selectSort(arr) {
 
 
 // 插入排序
+/**
+ * 插入排序
+ * 时间复杂度 O(n^2)
+ * @param  {[type]} arr [description]
+ * @return {[type]}     [description]
+ */
 function insertSort(arr) {
     let len = arr.length;
     for(var i=1; i<len; i++) {
@@ -53,41 +69,55 @@ function insertSort(arr) {
 }
 
 
-function quickSort(arr) {
-    function sort(i, j) {
-        var start = i, 
-        end = j;
-        var base = 0;
-        if (j-i > 1) {
-            while(i !== j) {
-                console.log(i, j);;
-                if (arr[i] > arr[j]) {
-                    var temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                    if (base === i) {
-                        base = j;
-                        i++;
-                    } else {
-                        base = i;
-                        j--;
-                    }
-                } else {
-                   if (base === i) {
-                        j--;
-                    } else {
-                        i++;
-                    } 
-                }
-            }
-            sort(start, i+1);
-            sort(i+1, end+1);
-        }
-    }
 
-    sort(0, arr.length);
-    
+/**
+ * 快速排序
+ * 时间复杂度  O(nlogn)
+ * @param  {[type]} arr [description]
+ * @return {[type]}     [description]
+ */
+function quickSort(arr) {
+	function sort(i, j) {
+		var start = i,
+			end = j;
+		var base = i;
+		if (j-i>=1) {
+			while(i !== j) {
+				if (arr[i] > arr[j]) {
+					var temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+					if (i === base) {
+						base = j;
+						i++;
+					} else {
+						base = i;
+						j--;
+					}
+				} else {
+					if (i === base) {
+						j--;
+					} else {
+						i++;
+					}
+				}
+			}
+			sort(start, base);
+			sort(base+1, end);
+			
+		} else {
+			return;
+		}
+	}
+	sort(0, arr.length-1);
+	return arr;
 }
 
+n-1  ((n-1)/2 - 1)*2   n-3  n-6
 
-console.log(quickSort([5,12,52,14,25,32,65,12,1]));
+n-1 - 
+
+
+var arr = [2,3,4,52,2,112,123,123,5436,2134234,2342368,3431,4545,123];
+console.log(quickSort(arr));
+// [ 2, 2, 3, 4, 52, 112, 123, 123, 123, 3431, 4545, 5436, 2134234, 2342368 ]
